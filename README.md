@@ -1,6 +1,8 @@
 # [bondoer.fr](http://bondoer.fr)
 My personal website, made with <3 and JavaScript.
 
+![Screenshot](http://i.imgur.com/raNu7Iv.png)
+
 ## Prerequisites
 **Server-side**
 * [FontAwesome](http://fontawesome.io) in `fonts` folder

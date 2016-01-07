@@ -1,6 +1,13 @@
 /* 
  * background.js - simple abstract background generator
- * 
+ *
+ * Changes:
+ *  6-Jan-2016
+ *   > Stored PI * 2 in var for better framerate on mobile
+ *   > Drawing circles to off-screen canvas only once, reducing .arc() ops
+ *   + Added mobile detection
+ *   + In-depth mobile+debug options
+ *
  * @author  pbondoer - http://bondoer.fr/
  * @license CC0 - https://creativecommons.org/publicdomain/zero/1.0/
  */
@@ -12,12 +19,13 @@ window.requestAnimFrame = (function(callback) {
     };
 })();
 
+
 window.addEventListener("load", function() {
     var ctx = document.getElementById('background').getContext('2d');
     //gradient
-    var gradientSize = 16; // increasing reduces performance (resolution)
+    var gradientSize = 4; // 4 seems to work, initially was 16
     var gradientSmallRadius = 0;
-    var minSaturation = 50;
+    var minSaturation = 40;
     var maxSaturation = 80;
     var minLightness = 25;
     var maxLightness = 35;
@@ -26,8 +34,8 @@ window.addEventListener("load", function() {
     var maxGradientCycles = 10; // prevents points from moving too much
     //bokeh
     var bokehAmount = 30;
-    var maxBokehSize = 0.15;
-    var minBokehSize = 0.05;
+    var maxBokehSize = 0.30;
+    var minBokehSize = 0.10;
     var maxBokehAlpha = 0.4;
     var minBokehAlpha = 0.05;
     var maxBokehJitter = 0.3;
@@ -35,20 +43,32 @@ window.addEventListener("load", function() {
     //both
     var minSpeed = 0.0001;
     var maxSpeed = 0.001;
-    //buffer
-    var buffer = document.createElement('canvas').getContext('2d');
-    buffer.canvas.height = gradientSize;
-    buffer.canvas.width = gradientSize;
+    //buffers
+    var gradientBuffer = document.createElement('canvas').getContext('2d');
+    var circleBuffer = document.createElement('canvas').getContext('2d');
     //render time, fps calculations, debug
     var time;
-    var targetFps = 60;
-    var showDebug = false;
+    var targetFps = 60; //not actual fps, but updates per second
     var curFps = 0;
     var cntFps = 0;
     var fps = 0;
     var w = 0;
     var h = 0;
     var scale = 0;
+    var mobile = 
+    {
+        halfRes: false, 
+        bokehAmount: bokehAmount / 6,
+        force: false
+    }
+    var debug =
+    {
+        strokeBokeh: false,
+        showFps: false,
+        showGradient: false
+    }
+    //constants for faster calcs
+    var pi2 = Math.PI * 2;
     //util functions
     function lerp(a, b, step) {
         return step * (b - a) + a;
@@ -63,6 +83,19 @@ window.addEventListener("load", function() {
     }
     function newColor() {
         return new Color(Math.random() * 360, rand(minSaturation, maxSaturation), rand(minLightness, maxLightness));
+    }
+    
+    function isMobile() { 
+        return (
+               navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)
+            || mobile.force
+        );
     }
     //classes
     function Color(h, s, l) {
@@ -139,11 +172,37 @@ window.addEventListener("load", function() {
         h = window.innerHeight;
         scale = Math.sqrt(w * h);
         
+        //actual canvas
         ctx.canvas.width = w;
         ctx.canvas.height = h;
+        if (isMobile() && mobile.halfRes)
+        {
+            //half res
+            ctx.canvas.width /= 2;
+            ctx.canvas.height /= 2;
+            ctx.scale(0.5, 0.5);
+        }
+        
+        //circle canvas
+        var circleSize = maxBokehSize * scale;
+        circleBuffer.canvas.width = circleSize * 2 + 1;
+        circleBuffer.canvas.height = circleSize * 2 + 1;
+        
+        circleBuffer.fillStyle = "rgb(255, 255, 255)";
+        circleBuffer.beginPath();
+        circleBuffer.arc(circleSize, circleSize, circleSize, 0, pi2);
+        circleBuffer.closePath();
+        circleBuffer.fill();
     }
     function init() {
+        gradientBuffer.canvas.height = gradientSize;
+        gradientBuffer.canvas.width = gradientSize;
+        
         resize();
+        
+        if (isMobile())
+            bokehAmount = mobile.bokehAmount;
+        
         colorPoints.forEach(function(point) {
             point.newX = clamp(point.oldX + rand(minGradientJitter, maxGradientJitter));
             point.newY = clamp(point.oldY + rand(minGradientJitter, maxGradientJitter));
@@ -218,59 +277,80 @@ window.addEventListener("load", function() {
             }
         });
     }
+    
     function render() {
         iterate();
         
         //draw point gradient to buffer
-        buffer.fillStyle = "#000";
-        buffer.fillRect(0, 0, gradientSize, gradientSize);
+        gradientBuffer.fillStyle = "#000";
+        gradientBuffer.fillRect(0, 0, gradientSize, gradientSize);
 
         colorPoints.forEach(function(point) {
             var x = point.x() * gradientSize;
             var y = point.y() * gradientSize;
-            var grad = buffer.createRadialGradient(x, y, gradientSmallRadius, x, y, gradientSize);
+            var grad = gradientBuffer.createRadialGradient(x, y, gradientSmallRadius, x, y, gradientSize);
             grad.addColorStop(0, 'hsla(' + point.color().str() + ', 255)');
             grad.addColorStop(1, 'hsla(' + point.color().str() + ', 0)');
 
-            buffer.fillStyle = grad;
-            buffer.fillRect(0, 0, gradientSize, gradientSize);
+            gradientBuffer.fillStyle = grad;
+            gradientBuffer.fillRect(0, 0, gradientSize, gradientSize);
         });
 
-        //draw from memory
+        //draw gradient from memory
         ctx.globalCompositeOperation = "source-over";
-        ctx.drawImage(buffer.canvas, 0, 0, w, h);
-        
+        ctx.drawImage(gradientBuffer.canvas, 0, 0, w, h);
+
         //draw bokeh
+        
         ctx.globalCompositeOperation = "overlay";
+        if (debug.strokeBokeh) {
+            ctx.strokeStyle = "yellow";
+        }
+        
         circles.forEach(function(circle) {
+            ctx.globalAlpha = circle.alpha();
+            ctx.drawImage(circleBuffer.canvas, Math.round(circle.x() * w), Math.round(circle.y() * h), Math.round(circle.size() * scale), Math.round(circle.size() * scale));
+            
+            if(debug.strokeBokeh) {
+                ctx.globalAlpha = 1;
+                ctx.globalCompositeOperation = "source-over";
+                ctx.strokeRect(Math.round(circle.x() * w), Math.round(circle.y() * h), Math.round(circle.size() * scale), Math.round(circle.size() * scale));
+                ctx.globalCompositeOperation = "overlay";
+            }
+            //old rendering code
+            /*
             ctx.fillStyle = "rgba(255, 255, 255, " + circle.alpha() + ")";
             ctx.beginPath();
-            ctx.arc(circle.x() * w, circle.y() * h, circle.size() * scale, 0, Math.PI * 2);
+            ctx.arc(Math.round(circle.x() * w), Math.round(circle.y() * h), Math.round(circle.size() * scale), 0, pi2);
             ctx.closePath();
-            ctx.fill(); 
+            ctx.fill();
+            */
         });
+        ctx.globalAlpha = 1;
         
         //debug info
-        if (showDebug) {
+        if (debug.showGradient) {
             ctx.globalCompositeOperation = "source-over";
-            
+        
             colorPoints.forEach(function(point) {
                 if(point.cycles >= maxGradientCycles) ctx.fillStyle = 'red';
-                else ctx.fillStyle = 'white';
+                else ctx.fillStyle = 'yellow';
                 ctx.beginPath();
-                ctx.arc(point.x() * w, point.y() * h, 12, 0, Math.PI * 2);
+                ctx.arc(point.x() * w, point.y() * h, 12, 0, pi2);
                 ctx.closePath();
                 ctx.fill();
 
                 ctx.fillStyle = 'hsl(' + point.color().str() + ')';
                 ctx.beginPath();
-                ctx.arc(point.x() * w, point.y() * h, 10, 0, Math.PI * 2);
+                ctx.arc(point.x() * w, point.y() * h, 10, 0, pi2);
                 ctx.closePath();
                 ctx.fill();
-            });
+            });   
+        }
             
+        if (debug.showFps) {
             if(fps <= 10) ctx.fillStyle = 'red';
-            else ctx.fillStyle = 'white';
+            else ctx.fillStyle = 'yellow';
             ctx.font="20px 'Open Sans'";
             ctx.fillText(Math.round(fps) + " fps", 10, 20);
         }
@@ -279,8 +359,10 @@ window.addEventListener("load", function() {
         window.requestAnimFrame(render);
     }
     
+    //does not seem to impact performance
     window.addEventListener("resize", resize);
+    window.addEventListener("touchmove", resize);
     
     init();
-    render(Date.now());
+    render();
 });

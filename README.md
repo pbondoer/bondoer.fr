@@ -1,7 +1,7 @@
 # [bondoer.fr](http://bondoer.fr)
 My personal website, made with <3 and JavaScript.
 
-![Screenshot](http://i.imgur.com/raNu7Iv.png)
+![Screenshot](http://i.imgur.com/Crlq5Oc.png)
 
 ## Prerequisites
 **Server-side**

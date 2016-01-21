@@ -3,8 +3,7 @@
  *
  * Changes:
  *  21-Jan-2016
- *   > Use screen.width rather than window.innerWidth for mobile users
- *   > Better m
+ *   > Cap frames to 10 on mobile to prevent scroll lag
  *  20-Jan-2016
  *   + Added more versatile mobile options
  *   > Using tabs and 80 width

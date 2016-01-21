@@ -227,6 +227,7 @@ window.addEventListener("load", function() {
 		ctx.canvas.height = height;
 		ctx.scale(1 / options.resolution, 1 / options.resolution);
 
+		setTimeout(function() {
 		//circle canvas
 		var circleSize = options.bokeh.size.max * scale;
 		circleBuffer.canvas.width = circleSize * 2 + 1;
@@ -237,6 +238,7 @@ window.addEventListener("load", function() {
 		circleBuffer.arc(circleSize, circleSize, circleSize, 0, pi2);
 		circleBuffer.closePath();
 		circleBuffer.fill();
+		}, 10);
 	}
 	function softCopy(src, dest)
 	{
@@ -323,10 +325,6 @@ window.addEventListener("load", function() {
 		iterate();
 
 		//draw point gradient to buffer
-		gradientBuffer.fillStyle = "#000";
-		gradientBuffer.fillRect(0, 0,
-				options.gradient.resolution, options.gradient.resolution);
-
 		colorPoints.forEach(function(point) {
 			var x = point.x * options.gradient.resolution;
 			var y = point.y * options.gradient.resolution;

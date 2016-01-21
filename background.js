@@ -227,7 +227,6 @@ window.addEventListener("load", function() {
 		ctx.canvas.height = height;
 		ctx.scale(1 / options.resolution, 1 / options.resolution);
 
-		setTimeout(function() {
 		//circle canvas
 		var circleSize = options.bokeh.size.max * scale;
 		circleBuffer.canvas.width = circleSize * 2 + 1;
@@ -238,7 +237,10 @@ window.addEventListener("load", function() {
 		circleBuffer.arc(circleSize, circleSize, circleSize, 0, pi2);
 		circleBuffer.closePath();
 		circleBuffer.fill();
-		}, 10);
+
+		//force render on mobile
+		if (isMobile())
+			render();
 	}
 	function softCopy(src, dest)
 	{

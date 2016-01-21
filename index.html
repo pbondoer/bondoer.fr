@@ -2,56 +2,56 @@
 <!doctype html>
 
 <html>
-    <head>
-        <title>Pierre Bondoerffer - developer / musician / lemon</title>
-        <meta name="viewport" content="width=device-width, initial-scale=0.7">
-        <meta name="theme-color" content="#222222">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
-        <link rel="icon" type="image/png" href="favicon.png">
-        <link rel="icon" sizes="128x128" href="favicon.png">
-        <link rel="icon" sizes="192x192" href="icon.png">
-        <script async type="text/javascript" src="background.js"></script>
-        <script>      
-            window.addEventListener('load', function() {
-                function rot13(str) {   
-                    return str.replace(/[a-zA-Z]/g,
-                        function(c)
-                        {
-                            return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
-                        }
-                    );
-                }
-                function stop_hammertime() {
-                    var bots_cant_touch_this = rot13(['c','v','r','e','e','r','@','o','b','a','q','b','r','e','.','s','e'].join(''));
-                    document.getElementById("mail").innerHTML = bots_cant_touch_this;
-                    document.getElementById("mail_link").setAttribute("href", "mailto:" + bots_cant_touch_this);
-                }
+	<head>
+		<title>Pierre Bondoerffer - developer / musician / lemon</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+		<meta name="theme-color" content="#222222">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:100,300">
+		<link rel="icon" type="image/png" href="favicon.png">
+		<link rel="icon" sizes="128x128" href="favicon.png">
+		<link rel="icon" sizes="192x192" href="icon.png">
+		<script async type="text/javascript" src="background.js"></script>
+		<script>
+window.addEventListener('load', function() {
+	function rot13(str) {
+		return str.replace(/[a-zA-Z]/g,
+				function(c)
+				{
+					return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+				}
+				);
+	}
+	function stop_hammertime() {
+		var bots_cant_touch_this = rot13(['e', 's', '.', 'e', 'r', 'b', 'q', 'a', 'b', 'o', '@', 'r', 'e', 'e', 'r', 'v', 'c'].reverse().join(''));
+		document.getElementById("mail").innerHTML = bots_cant_touch_this;
+		document.getElementById("mail_link").setAttribute("href", "mailto:" + bots_cant_touch_this);
+	}
 
-                stop_hammertime();
-            }, false);
-        </script>
-    </head>
-    
-    <body>
-        <canvas id="background"></canvas>
-        
-        <div id="container">
-            <div id="me" class="block">
-                <div style="font-size: 64px;">Pierre Bondoerffer</div>
-                <div style="font-size: 32px;">developer / musician / lemon</div>
-            </div>
-            
-            <div id="info" class="list">
-                <a id="mail_link" href="" class="block"><i class="fa fa-envelope-o" aria-hidden="true"></i><span id="mail">(enable JS for e-mail)</span></a>
-                <a href="https://google.com/maps/search/Paris,+France" class="block"><i class="fa fa-map-marker" aria-hidden="true"></i>Paris, France</a>
-            </div>
+	stop_hammertime();
+}, false);
+		</script>
+	</head>
 
-            <div id="stuff" class="list">
-                <a href="https://github.com/pbondoer" id="code" class="block"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
-                <a href="https://soundcloud.com/pbondoer" id="music" class="block"><i class="fa fa-sc" aria-hidden="true"></i>SoundCloud</a>
-                <a href="https://twitter.com/dalemon42" id="twitter" class="block"><i class="fa fa-tw" aria-hidden="true"></i>Twitter</a>
-            </div>
-        </div>
-    </body>
+	<body>
+		<canvas id="background"></canvas>
+
+		<div id="container">
+			<div id="me" class="block">
+				<div style="font-size: 64px;">Pierre Bondoerffer</div>
+				<div style="font-size: 32px; font-weight: 100;">developer / musician / lemon</div>
+			</div>
+
+			<div id="info" class="list">
+				<a id="mail_link" href="" class="block"><i class="fa fa-envelope-o" aria-hidden="true"></i><span id="mail">(enable JS for e-mail)</span></a>
+				<a href="https://google.com/maps/search/Paris,+France" class="block"><i class="fa fa-map-marker" aria-hidden="true"></i>Paris, France</a>
+			</div>
+
+			<div id="stuff" class="list">
+				<a href="https://github.com/pbondoer" id="code" class="block"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
+				<a href="https://soundcloud.com/pbondoer" id="music" class="block"><i class="fa fa-sc" aria-hidden="true"></i>SoundCloud</a>
+				<a href="https://twitter.com/dalemon42" id="twitter" class="block"><i class="fa fa-tw" aria-hidden="true"></i>Twitter</a>
+			</div>
+		</div>
+	</body>
 </html>

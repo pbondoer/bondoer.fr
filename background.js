@@ -84,10 +84,6 @@ window.addEventListener("load", function() {
 		bokeh:
 		{
 			count: 6
-		},
-		debug:
-		{
-			showFps: true
 		}
 	};
 	//buffers
@@ -387,7 +383,6 @@ window.addEventListener("load", function() {
 
 	//does not seem to impact performance
 	window.addEventListener("resize", resize);
-	window.addEventListener("touchmove", resize);
 
 	//init and render :)
 	init();

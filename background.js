@@ -2,6 +2,9 @@
  * background.js - simple abstract background generator
  *
  * Changes:
+ *  21-Jan-2016
+ *   > Use screen.width rather than window.innerWidth for mobile users
+ *   > Better m
  *  20-Jan-2016
  *   + Added more versatile mobile options
  *   > Using tabs and 80 width
@@ -18,14 +21,6 @@
  * @author  pbondoer - http://bondoer.fr/
  * @license CC0 - https://creativecommons.org/publicdomain/zero/1.0/
  */
-
-window.requestAnimFrame = (function(callback) {
-	return window.requestAnimationFrame || window.webkitRequestAnimationFrame
-		|| window.mozRequestAnimationFrame || window.oRequestAnimationFrame
-		|| window.msRequestAnimationFrame || function(callback) {
-			window.setTimeout(callback, 1000 / 60);
-		};
-})();
 
 window.addEventListener("load", function() {
 	var ctx = document.getElementById('background').getContext('2d');
@@ -90,6 +85,10 @@ window.addEventListener("load", function() {
 		bokeh:
 		{
 			count: 6
+		},
+		debug:
+		{
+			showFps: true
 		}
 	};
 	//buffers
@@ -128,16 +127,29 @@ window.addEventListener("load", function() {
 
 	function isMobile() { 
 		return (
-				navigator.userAgent.match(/Android/i)
+				mobile.force
+				|| navigator.userAgent.match(/Android/i)
 				|| navigator.userAgent.match(/webOS/i)
 				|| navigator.userAgent.match(/iPhone/i)
 				|| navigator.userAgent.match(/iPad/i)
 				|| navigator.userAgent.match(/iPod/i)
 				|| navigator.userAgent.match(/BlackBerry/i)
 				|| navigator.userAgent.match(/Windows Phone/i)
-				|| mobile.force
 			   );
 	}
+
+	window.requestAnimFrame = (function(callback) {
+		if (isMobile())
+			return function(callback) {
+				window.setTimeout(callback, 1000 / 10);
+			};
+		return window.requestAnimationFrame || window.webkitRequestAnimationFrame
+			|| window.mozRequestAnimationFrame || window.oRequestAnimationFrame
+			|| window.msRequestAnimationFrame || function(callback) {
+				window.setTimeout(callback, 1000 / 60);
+			};
+	})();
+
 	//classes
 	function Color(h, s, l) {
 		this.h = h;
@@ -208,13 +220,16 @@ window.addEventListener("load", function() {
 		}));
 	}
 	function resize() {
-		w = window.innerWidth * options.resolution;
-		h = window.innerHeight * options.resolution;
+		var width = window.innerWidth;
+		var height = window.innerHeight;
+
+		w = width * options.resolution;
+		h = height * options.resolution;
 		scale = Math.sqrt(w * h);
 
 		//actual canvas
-		ctx.canvas.width = window.innerWidth;
-		ctx.canvas.height = window.innerHeight;
+		ctx.canvas.width = width;
+		ctx.canvas.height = height;
 		ctx.scale(1 / options.resolution, 1 / options.resolution);
 
 		//circle canvas

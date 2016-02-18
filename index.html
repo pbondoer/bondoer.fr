@@ -1,56 +1,81 @@
 <!doctype html>
 
 <html>
-	<head>
-		<title>Pierre Bondoerffer - developer / musician / lemon</title>
-		<meta name="viewport" content="width=device-width, initial-scale=0.7">
-		<meta name="theme-color" content="#222222">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:100,300">
-		<link rel="icon" type="image/png" href="favicon.png">
-		<link rel="icon" sizes="128x128" href="favicon.png">
-		<link rel="icon" sizes="192x192" href="icon.png">
-		<script async type="text/javascript" src="background.js"></script>
-		<script>
-window.addEventListener('load', function() {
-	function rot13(str) {
-		return str.replace(/[a-zA-Z]/g,
-				function(c)
-				{
-					return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
-				}
-				);
-	}
-	function stop_hammertime() {
-		var bots_cant_touch_this = rot13(['e', 's', '.', 'e', 'r', 'b', 'q', 'a', 'b', 'o', '@', 'r', 'e', 'e', 'r', 'v', 'c'].reverse().join(''));
-		document.getElementById("mail").innerHTML = bots_cant_touch_this;
-		document.getElementById("mail_link").setAttribute("href", "mailto:" + bots_cant_touch_this);
-	}
-
-	stop_hammertime();
-}, false);
-		</script>
-	</head>
-
-	<body>
-		<canvas id="background"></canvas>
-
-		<div id="container">
-			<div id="me" class="block">
-				<div style="font-size: 64px;">Pierre Bondoerffer</div>
-				<div style="font-size: 32px; font-weight: 100;">developer / musician / lemon</div>
-			</div>
-
-			<div id="info" class="list">
-				<a id="mail_link" href="" class="block"><i class="fa fa-envelope-o" aria-hidden="true"></i><span id="mail">(enable JS for e-mail)</span></a>
-				<a href="https://google.com/maps/search/Paris,+France" class="block"><i class="fa fa-map-marker" aria-hidden="true"></i>Paris, France</a>
-			</div>
-
-			<div id="stuff" class="list">
-				<a href="https://github.com/pbondoer" id="code" class="block"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
-				<a href="https://soundcloud.com/pbondoer" id="music" class="block"><i class="fa fa-sc" aria-hidden="true"></i>SoundCloud</a>
-				<a href="https://twitter.com/dalemon42" id="twitter" class="block"><i class="fa fa-tw" aria-hidden="true"></i>Twitter</a>
-			</div>
-		</div>
-	</body>
+    <head>
+        <title>Pierre Bondoerffer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.7">
+        <meta name="theme-color" content="#222222">
+        <link href='https://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+        <link href='style.css' rel='stylesheet' type='text/css'>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    </head>
+    <body>
+        <div id="filler">
+            <div id="card">
+                <div style="font-size: 2.5em;">Pierre Bondoerffer</div>
+                <div style="font-size: 1.5em; font-weight: 100;">developer / musician / lemon</div>
+            </div>
+            
+            <div id="me">
+                <div><i class="fa fa-graduation-cap" aria-hidden="true"></i> 42</div>
+                <div><i class="fa fa-paper-plane" aria-hidden="true"></i> pierre@bondoer.fr</div>
+                <div><i class="fa fa-map-marker" aria-hidden="true"></i> Paris, France</div>
+            </div>
+        </div>
+        <div class="box" id="code">
+            <div class="header"><i class="fa fa-code" aria-hidden="true"></i> code</div>
+            <div class="content">
+                <p>Here's what I've been making!</p>
+                <br>
+                <div class="grid">
+                    <div class="item">
+                        <div class="title">padomino</div>
+                        <div>Tetris for pad/grid MIDI controllers</div>
+                        <div class="view"><a href="https://github.com/pbondoer/padomino">&rang; View on <i class="fa fa-github" aria-hidden="true"></i> GitHub</a></div>
+                    </div>
+                    <div class="item">
+                        <div class="title">fourpoint.js</div>
+                        <div>simple 4-point gradient generator</div>
+                        <div class="view"><a href="https://github.com/pbondoer/padomino">&rang; View on <i class="fa fa-github" aria-hidden="true"></i> GitHub</a></div>
+                    </div>
+                    <div class="item">
+                        <div class="title">thoughts</div>
+                        <div>a tiny blog that builds directly from Markdown</div>
+                        <div class="view"><a href="https://github.com/pbondoer/padomino">&rang; View on <i class="fa fa-github" aria-hidden="true"></i> GitHub</a></div>
+                    </div>
+                    <div class="item">
+                        <div class="title">View more</div>
+                        <div><a href="https://github.com/pbondoer/padomino">on <i class="fa fa-github" aria-hidden="true"></i> GitHub</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box" id="music">
+            <div class="header"><i class="fa fa-volume-up" aria-hidden="true"></i> sound</div>
+            <div class="content">
+                <p>Music is great! As a matter of fact, it's so great I've made some. Here, have a listen!</p>
+                <br>
+                <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/10258802&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+            </div>
+        </div>
+        <div class="box" id="blog">
+            <div class="header"><i class="fa fa-rss" aria-hidden="true"></i> blog</div>
+            <div class="content">
+                <p><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ramblings</p>
+            </div>
+        </div>
+        <div class="box" id="contact">
+            <div class="header"><i class="fa fa-comment" aria-hidden="true"></i> talk</div>
+            <div class="content">
+                Feel free to get in touch through <a href="https://twitter.com/dalemon42" style="color: #4099FF"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a> or my e-mail at the top of this page. I'll be happy to chat!
+            </div>
+        </div>
+        <div class="footer">
+            Website made with <span style="color: rgb(200, 0, 0);"><i class="fa fa-heart" aria-hidden="true" aria-label="love"></i></span> under <a href="https://creativecommons.org/publicdomain/zero/1.0/"><i class="fa fa-creative-commons" aria-hidden="true"></i> CC0</a><br>
+            Source  hosted on <a href="https://github.com/pbondoer/bondoer.fr"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a><br>
+            Icons by <a href="https://fontawesome.io"><i class="fa fa-flag" aria-hidden="true"></i> FontAwesome</a>
+        </div>
+    </body>
 </html>
+<!-- here be dragons -->

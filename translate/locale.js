@@ -81,10 +81,10 @@ function attachLinks()
                 left = window.pageXOffset || document.documentElement.scrollLeft;
             
             var href;
-            if (event.target.tagName == "IMG")
-                href = event.target.parentElement.getAttribute("href");
+            if (e.target.tagName == "IMG")
+                href = e.target.parentElement.getAttribute("href");
             else
-                href = event.target.getAttribute("href");
+                href = e.target.getAttribute("href");
             
             window.location.hash = href;
             loadLocale(href);

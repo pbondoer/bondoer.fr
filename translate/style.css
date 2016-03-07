@@ -107,7 +107,7 @@ a:hover
 {
     transition: 0.42s;
     opacity: 0;
-    padding: .1em .25em .1em .25em;
+    padding: .25em;
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
 }

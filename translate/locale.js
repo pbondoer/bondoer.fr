@@ -5,6 +5,22 @@
  * @license CC0
  */
 
+
+// E-mail hiding
+function rot13(str) {
+    return str.replace(/[a-zA-Z]/g,
+        function(c)
+        {
+			return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+		}
+	);
+}
+function stop_hammertime() {
+	var bots_cant_touch_this = rot13(['e', 's', '.', 'e', 'r', 'b', 'q', 'a', 'b', 'o', '@', 'r', 'e', 'e', 'r', 'v', 'c'].reverse().join(''));
+	document.getElementById("mail").setAttribute("href", "mailto:" + bots_cant_touch_this);
+}
+
+// HTTP stuff
 function httpGet(url, callback)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -61,6 +77,8 @@ function localeLoaded(src)
             
             element.innerHTML = json[key];
         }
+        
+        stop_hammertime();
     }
     catch(e)
     {
@@ -97,6 +115,7 @@ function attachLinks()
 window.addEventListener("load", function()
 {
     attachLinks();
+	stop_hammertime();
     if (window.location.hash)
         loadLocale(window.location.hash);
 });

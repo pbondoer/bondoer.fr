@@ -1,0 +1,146 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+html
+{
+    background-color: floralwhite;
+}
+
+body
+{
+    font-size: 1em;
+    font-family: 'Lato';
+    font-weight: 400;
+    padding: 2em;
+    margin: auto;
+    max-width: 700px;
+    min-width: 400px;
+}
+
+.background
+{
+    position: absolute;
+    height: 500px;
+    width: 400px;
+    margin-left: -200px;
+    z-index: -10;
+    opacity: 0.15;
+    background: url(lemon.svg);
+    background-repeat: no-repeat;
+}
+
+h1
+{
+    font-weight: 600;
+    font-size: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+h2
+{
+    font-weight: 400;
+    font-size: 1.5em;
+    margin-top: 1.5em;
+}
+
+p
+{
+    margin-bottom: 0;
+}
+
+a
+{
+    color: royalblue;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+a:hover
+{
+    color: darkblue;
+    text-decoration: underline;
+}
+
+.lang
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.lang a
+{
+    margin-right: 1em;
+}
+.lang a img
+{
+    margin-right: .3em;
+}
+
+.grid
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: stretch;
+    margin-right: -1em;
+}
+
+.grid .item
+{
+    position: relative;
+    flex-grow: 1;
+    height: 12em;
+    min-width: 18em;
+    flex-wrap: wrap;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    transition: .42s;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.grid .item .tooltip
+{
+    transition: 0.42s;
+    opacity: 0;
+    padding: .1em .25em .1em .25em;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+}
+
+.grid .item:hover .tooltip
+{
+    opacity: 1;
+    color: #EEE;
+}
+
+.grid .item .lang
+{
+    bottom: 1em;
+    right: 1em;
+}
+
+.grid .item .title
+{
+    top: 1em;
+    left: 1em;
+}
+
+.grid .item .lang img
+{
+    margin-right: .5em;
+}
+.grid .item .lang img:last-child
+{
+    margin-right: 0;
+}
+
+.footer
+{
+    margin-top: 1em;
+    text-align: right;
+}

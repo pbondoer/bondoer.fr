@@ -56,6 +56,9 @@ function localeLoaded(src)
                 continue;
             }
             
+            if (key == "title")
+                document.title = json[key];
+            
             element.innerHTML = json[key];
         }
     }

@@ -4,7 +4,7 @@
   "description": "bondoer.fr public website",
   "main": "src/index.html",
   "author": "Pierre Bondoerffer <pierre@bondoer.fr>",
-  "license": "MIT",
+  "license": "WTFPL",
   "private": false,
   "scripts": {
     "start": "parcel src/index.html",

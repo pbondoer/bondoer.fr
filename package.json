@@ -1,0 +1,30 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "bondoer.fr public website",
+  "main": "src/index.html",
+  "author": "Pierre Bondoerffer <pierre@bondoer.fr>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "npm run clean && parcel build src/index.html",
+    "prettier": "prettier --write src",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.0.0",
+    "parcel": "^1.0.0",
+    "postcss-modules": "^3.0.0",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "fontsource-source-sans-pro": "^3.0.9"
+  },
+  "browserslist": [
+    ">1%",
+    "not dead",
+    "not op_mini all",
+    "last 2 versions"
+  ]
+}

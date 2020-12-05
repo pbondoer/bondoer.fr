@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en" charset="UTF-8">
+  <head>
+    <title>Pierre Bondoerffer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <style>
+    @import '../node_modules/fontsource-source-sans-pro/latin-400-normal.css';
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      border: 0;
+
+      font-family: 'Source Sans Pro';
+      font-size: 26px;
+    }
+
+    ::selection {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      background-color: #0f0f0f;
+      color: #ddd;
+    }
+
+    h1,
+    p,
+    a {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 0.2rem 0.4rem;
+    }
+
+    h1 {
+      margin: 0;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin: 0.3rem 0;
+    }
+    nav {
+      margin-top: 1rem;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: background-color linear 0.1s;
+    }
+    a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    #github:hover {
+      background-color: rgba(255, 0, 0, 0.2);
+    }
+    #github:hover ~ div > svg {
+      fill: rgb(255, 0, 0);
+      transform: rotate(120deg);
+    }
+    #twitter:hover {
+      background-color: rgba(29, 161, 242, 0.2);
+    }
+    #twitter:hover ~ div > svg {
+      fill: rgb(29, 161, 242);
+      transform: rotate(240deg);
+    }
+    #cv:hover {
+      background-color: rgba(0, 255, 0, 0.2);
+    }
+    #cv:hover ~ div > svg {
+      fill: rgb(0, 255, 0);
+      transform: rotate(360deg);
+    }
+
+    section {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      top: 1rem;
+      bottom: 1rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 810px;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(30deg);
+      }
+
+      to {
+        transform: rotate(390deg);
+      }
+    }
+
+    svg {
+      fill: #000;
+      opacity: 0.2;
+      height: 100vh;
+
+      transform-origin: 50% 66.66%;
+      transition: transform linear 0.5s, fill linear 0.5s;
+    }
+
+    nav > div {
+      position: fixed;
+      top: -16vh;
+      right: -30vh;
+      bottom: 0;
+      z-index: -1000;
+
+      transform-origin: 50% 66.66%;
+      animation-name: rotate;
+      animation-duration: 100s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  </style>
+  <body>
+    <section>
+      <h1>Pierre Bondoerffer</h1>
+      <p>Hiya! 👋</p>
+      <p>My name is Pierre and I enjoy building web things.</p>
+      <p>
+        You can find my resumé below.<br />Feel free to contact me if you would
+        like to work together! 🚀
+      </p>
+      <nav>
+        <a href="https://github.com/pbondoer" id="github">GitHub</a>
+        <a href="https://twitter.com/pbondoer" id="twitter">Twitter</a>
+        <a href="/resume" id="cv">CV</a>
+        <div>
+          <svg viewBox="0 0 500 433">
+            <polygon points="250,0 0,433 500,433" />
+          </svg>
+        </div>
+      </nav>
+    </section>
+  </body>
+</html>

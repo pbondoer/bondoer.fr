@@ -9,6 +9,9 @@ yarn
 # Run a production build
 yarn build
 
+# Deploy to GitHub pages
+git subtree push --prefix dist origin gh-pages
+
 # Production build is located in dist folder
 ```
 

@@ -13,9 +13,7 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "autoprefixer": "^9.0.0",
     "parcel": "^1.0.0",
-    "postcss-modules": "^3.0.0",
     "prettier": "^2.2.1"
   },
   "dependencies": {

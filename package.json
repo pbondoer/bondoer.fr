@@ -10,7 +10,7 @@
     "start": "parcel src/index.html",
     "build": "npm run clean && parcel build src/index.html",
     "prettier": "prettier --write src",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist .cache"
   },
   "devDependencies": {
     "parcel": "^1.0.0",

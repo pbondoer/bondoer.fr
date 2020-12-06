@@ -11,7 +11,7 @@
     "build": "npm run clean && parcel build src/index.html",
     "prettier": "prettier --write src",
     "clean": "rm -rf dist .cache",
-    "deploy": "npm run build && git subtree push --prefix dist origin gh-pages"
+    "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "devDependencies": {
     "parcel": "^1.0.0",

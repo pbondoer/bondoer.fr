@@ -122,6 +122,17 @@
       animation-iteration-count: infinite;
       animation-timing-function: linear;
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      nav > div {
+        transform: rotate(10deg);
+        animation-name: none;
+      }
+
+      svg {
+        transform: rotate(0deg) !important;
+      }
+    }
   </style>
   <body>
     <section>

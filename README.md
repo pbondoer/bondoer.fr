@@ -1,7 +1,9 @@
 # [bondoer.fr](https://bondoer.fr)
+
 My personal website, pure HTML and CSS.
 
 ## 🚀 Building
+
 ```bash
 # Install dependencies
 yarn
@@ -16,4 +18,6 @@ git subtree push --prefix dist origin gh-pages
 ```
 
 ## License
-This website is licensed under the WTFPL. Feel free to do whatever you want with this. Enjoy!
+
+This website is licensed under the WTFPL. Feel free to do whatever you want with
+this. Enjoy!

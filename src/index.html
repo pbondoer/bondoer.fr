@@ -3,24 +3,28 @@
 <html lang="en" charset="UTF-8">
   <head>
     <title>Pierre Bondoerffer</title>
-    <meta name="description" content="Hiya! My name is Pierre and I enjoy building web things. 🚀">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <style>
-    @import '../node_modules/fontsource-source-sans-pro/latin-400-normal.css';
+    <meta
+      name="description"
+      content="Hiya! 👋 I'm Pierre and I'm a freelance software engineer 🚀"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    /></head
+  ><style>
+    @import '../node_modules/@fontsource/source-sans-pro/latin-400.css';
 
-    html,
-    body {
+    body,
+    html {
       margin: 0;
       padding: 0;
       border: 0;
-
-      font-family: 'Source Sans Pro';
-      font-size: 26px;
+      font-family: Source Sans Pro;
+      font-size: 30px;
     }
 
     ::selection {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: hsla(0, 0%, 100%, 0.2);
     }
 
     body {
@@ -28,74 +32,75 @@
       color: #ddd;
     }
 
+    a,
     h1,
-    p,
-    a {
+    h2,
+    p {
       display: inline-block;
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: hsla(0, 0%, 100%, 0.05);
       padding: 0.2rem 0.4rem;
+      margin: 0;
     }
 
-    h1 {
-      margin: 0;
+    h2 {
+      font-weight: 400;
+      font-size: 0.8rem;
       margin-bottom: 1rem;
     }
     p {
-      margin: 0.3rem 0;
+      margin: 0 0 0.5rem;
     }
-    nav {
-      margin-top: 1rem;
+    p:last-of-type {
+      margin-bottom: 1rem;
     }
     a {
       color: inherit;
       text-decoration: none;
-      transition: background-color linear 0.1s;
+      transition: background-color 0.1s linear;
       margin-right: 0.3em;
     }
     a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: hsla(0, 0%, 100%, 0.2);
     }
     #github:hover {
       background-color: rgba(255, 0, 0, 0.2);
     }
     #github:hover ~ div > svg {
-      fill: rgb(255, 0, 0);
+      fill: red;
       transform: rotate(120deg);
     }
     #twitter:hover {
       background-color: rgba(29, 161, 242, 0.2);
     }
     #twitter:hover ~ div > svg {
-      fill: rgb(29, 161, 242);
+      fill: #1da1f2;
       transform: rotate(240deg);
     }
     #cv:hover {
       background-color: rgba(0, 255, 0, 0.2);
     }
     #cv:hover ~ div > svg {
-      fill: rgb(0, 255, 0);
-      transform: rotate(360deg);
+      fill: #0f0;
+      transform: rotate(1turn);
     }
 
     section {
       position: absolute;
-      left: 1rem;
-      right: 1rem;
-      top: 1rem;
-      bottom: 1rem;
-
+      left: max(25% - 7em, 0px);
+      min-height: 100%;
+      max-width: 810px;
+      padding: 1rem;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
-      max-width: 810px;
+      justify-content: safe center;
     }
 
     @keyframes rotate {
-      from {
+      0% {
         transform: rotate(30deg);
       }
-
       to {
         transform: rotate(390deg);
       }
@@ -105,31 +110,30 @@
       fill: #333;
       opacity: 0.2;
       height: 100vh;
+      transition: transform 0.5s ease-in-out, fill 0.5s ease-in-out;
+    }
 
+    nav > div,
+    svg {
       transform-origin: 50% 66.66%;
-      transition: transform ease-in-out 0.5s, fill ease-in-out 0.5s;
     }
 
     nav > div {
       position: fixed;
       top: -16vh;
-      right: -30vh;
+      right: calc(-30vh + 15vw);
       bottom: 0;
       z-index: -1000;
-
-      transform-origin: 50% 66.66%;
       animation-name: rotate;
       animation-duration: 100s;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
     }
-
     @media (prefers-reduced-motion: reduce) {
       nav > div {
         transform: rotate(10deg);
         animation-name: none;
       }
-
       svg {
         transform: rotate(0deg) !important;
       }
@@ -138,12 +142,9 @@
   <body>
     <section>
       <h1>Pierre Bondoerffer</h1>
+      <h2>freelance software engineer</h2>
       <p>Hiya! 👋</p>
-      <p>My name is Pierre and I enjoy building web things.</p>
-      <p>
-        You can find my resumé below.<br />Feel free to contact me if you would
-        like to work together! 🚀
-      </p>
+      <p>My name is Pierre, and I enjoy building web things. 🚀</p>
       <nav>
         <a href="https://github.com/pbondoer" id="github">GitHub</a>
         <a href="https://twitter.com/pbondoer" id="twitter">Twitter</a>

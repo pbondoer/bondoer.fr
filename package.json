@@ -8,22 +8,17 @@
   "private": false,
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "npm run clean && parcel build src/index.html",
+    "build": "npm run clean && parcel build src/index.html && cp CNAME ./dist",
     "prettier": "prettier --write src",
     "clean": "rm -rf dist .cache",
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "devDependencies": {
-    "parcel": "^1.0.0",
+    "parcel": "1.12.3",
     "prettier": "^2.2.1"
   },
   "dependencies": {
-    "fontsource-source-sans-pro": "^3.0.9"
+    "@fontsource/source-sans-pro": "^4.5.0"
   },
-  "browserslist": [
-    ">1%",
-    "not dead",
-    "not op_mini all",
-    "last 2 versions"
-  ]
+  "browserslist": "> 0.25%"
 }

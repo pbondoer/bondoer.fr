@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "bondoer.fr public website",
   "main": "src/index.html",
   "author": "Pierre Bondoerffer <pierre@bondoer.fr>",

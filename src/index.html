@@ -32,6 +32,12 @@
       color: #ddd;
     }
 
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3em;
+    }
+
     a,
     h1,
     h2,
@@ -57,7 +63,6 @@
       color: inherit;
       text-decoration: none;
       transition: background-color 0.1s linear;
-      margin-right: 0.3em;
     }
     a:hover {
       background-color: hsla(0, 0%, 100%, 0.2);
@@ -76,12 +81,12 @@
       fill: #1da1f2;
       transform: rotate(240deg);
     }
-    #cv:hover {
-      background-color: rgba(0, 255, 0, 0.2);
+    #linkedin:hover {
+      background-color: rgba(10, 102, 194, 0.2);
     }
-    #cv:hover ~ div > svg {
-      fill: #0f0;
-      transform: rotate(1turn);
+    #linkedin:hover ~ div > svg {
+      fill: #0a66c2;
+      transform: rotate(360deg);
     }
 
     section {
@@ -121,9 +126,8 @@
 
     nav > div {
       position: fixed;
-      top: -16vh;
-      right: calc(-30vh + 15vw);
-      bottom: 0;
+      right: calc(-33.3vh + 15vw);
+      bottom: calc(33.3vh / 2);
       z-index: -1000;
       animation-name: rotate;
       animation-duration: 100s;
@@ -149,6 +153,7 @@
       <nav>
         <a href="https://github.com/pbondoer" id="github">GitHub</a>
         <a href="https://twitter.com/pbondoer" id="twitter">Twitter</a>
+        <a href="https://linkedin.com/pbondoer" id="linkedin">LinkedIn</a>
         <!-- a href="/resume" id="cv">CV</a -->
         <div aria-hidden="true">
           <svg viewBox="0 0 500 433">

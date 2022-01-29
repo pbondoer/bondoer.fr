@@ -11,14 +11,15 @@
     "build": "npm run clean && parcel build src/index.html && cp CNAME ./dist",
     "prettier": "prettier --write src",
     "clean": "rm -rf dist .cache",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "deploy": "git subtree push --prefix dist origin gh-pages",
+    "release": "sh release.sh"
   },
   "devDependencies": {
     "parcel": "1.12.3",
-    "prettier": "^2.2.1"
+    "prettier": "^2.5.1"
   },
   "dependencies": {
-    "@fontsource/source-sans-pro": "^4.5.0"
+    "@fontsource/source-sans-pro": "^4.5.2"
   },
   "browserslist": "> 0.25%"
 }

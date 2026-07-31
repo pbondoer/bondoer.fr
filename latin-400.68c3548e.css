@@ -1,0 +1,12 @@
+/* source-sans-pro-latin-400-normal*/
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('/source-sans-pro-latin-400-normal.adf4842b.woff2') format('woff2'), url('/source-sans-pro-latin-400-normal.e4b688ed.woff') format('woff');
+  
+}
+
+
+/*# sourceMappingURL=/latin-400.68c3548e.css.map */
